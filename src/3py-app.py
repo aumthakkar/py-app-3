@@ -11,7 +11,8 @@ app = Flask(__name__)
 def info():
     return jsonify({
         "hostname" : socket.gethostname(),
-        "time" : time.ctime()
+        "time" : time.ctime(),
+        "env": "dev"
     })
 
 @app.route('/api/v1/healthz')
