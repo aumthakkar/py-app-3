@@ -21,10 +21,10 @@ jobs:
         id: short_sha
         shell: bash
         run: | 
-            echo "${GITHUB_SHA::6}" >> GITHUB_ENV
+            echo "COMMIT_ID=${GITHUB_SHA::6}" >> ${GITHUB_ENV}
       
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: aumthakkar/3py-app:v1
+          tags: aumthakkar/3py-app:${{ env.COMMIT_ID }}
