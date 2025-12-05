@@ -36,6 +36,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: ci
     steps:
+      - name: Clone Github repo
+        uses: actions/checkout@v6
+
+      - name: Install ArgoCD App
+        shell: bash
+        run: |
+          curl -ksSL -o /tmp/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x /tmp/argocd
+          mv /tmp/argocd /usr/local/bin/argocd
+
       - name: ArgoCD Sync
         shell: bash
         run: |
