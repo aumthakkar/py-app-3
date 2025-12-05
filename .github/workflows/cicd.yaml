@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "${{ needs.ci.outputs.commit_id }}"
           sudo apt update && sudo apt install python3-pip -y
-          pip install yq
+          pip install yq --break-system-packages
           yq -Yi '.image.tag = "${{ needs.ci.outputs.commit_id }}"' charts/3py-app/values.yaml
 
       - name: Commit change back to your github repo
